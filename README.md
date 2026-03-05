@@ -28,7 +28,7 @@ To identify high-risk customer segments contributing to revenue instability and 
 
 **Dataset:** Sakila Movie Rental Database  
 **Source:** [MySQL Sakila Sample Database](https://github.com/jOOQ/sakila) 
-**Data Volume:** 80,000+ rental & payment records  
+**Data Volume:** 50,000+ rental & payment records  
 
 ### Core Tables Used
 
