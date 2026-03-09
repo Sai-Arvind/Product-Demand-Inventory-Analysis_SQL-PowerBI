@@ -91,13 +91,13 @@ JOIN category c
 GROUP BY c.name
 ORDER BY total_revenue DESC;
 ```
+**Sample Output** 
 
-|Output|(Top Genres)|
-|------|------------------|
-|Genre | Total Revenue |
-|Sports	| 5314 |
-|Sci-Fi | 4756 |
-|Animation | 4656 |
+| Genre     | Total Revenue ($) |
+|-----------|-------------------|
+| Sports    | 5,314             |
+| Sci-Fi    | 4,756             |
+| Animation | 4,656             |
 
 **Insight**
 
@@ -127,13 +127,13 @@ JOIN payment p
 GROUP BY c.customer_id, c.first_name, c.last_name
 ORDER BY customer_lifetime_value DESC;
 ```
+**Sample Output**
 
-|Output | (Top Customers) |
-|------|------------------|
-|Customer |	CLV |
-|Eleanor Hunt	|211|
-|Karl Seal	|208|
-|Clara Shaw	|205|
+| **Customer**      | **CLV ($)** |
+|-------------------|-------------|
+| Eleanor Hunt      | 211         |
+| Karl Seal         | 208         |
+| Clara Shaw        | 205         |
 
 **Insight**
 - The **top 3** customers generated over **$200 in lifetime revenue**, highlighting a small group of high-value customers driving significant recurring revenue.
@@ -158,12 +158,13 @@ GROUP BY customer_id
 ORDER BY total_rentals DESC;
 ```
 
-Output
-|Customer ID|	Total Rentals|
-|------|------------------|
-|148	| 46|
-|526	|45|
-|236 |	42|
+**Sample Output**
+
+| Customer ID | Total Rentals |
+|-------------|---------------|
+| 148         | 46            |
+| 526         | 45            |
+| 236         | 42            |
 
 **Insight**
 
@@ -187,17 +188,17 @@ SELECT
     DATEDIFF(return_date, rental_date) AS rental_duration
 FROM rental;
 ```
+**Sample Output**
 
-Output (Sample)
-|Rental ID	| Customer |	Rental Duration|
-|------|------------------|-------|
-|1023 |	45	|5 days
-|2045| 	122	|6 days
-|3156	|98	|4 days
+| Rental ID | Customer | Rental Duration |
+|-----------|----------|-----------------|
+| 1023      | 45       | 5 days          |
+| 2045      | 122      | 6 days          |
+| 3156      | 98       | 4 days          |
 
 **Insight**
 
-Most **rentals last 4–6 days**, meaning inventory remains **unavailable during this period**, impacting product circulation.
+Most **rentals last 4-6 days**, meaning inventory remains **unavailable during this period**, impacting product circulation.
 
 ---
 
@@ -223,12 +224,12 @@ JOIN store s
 GROUP BY s.store_id
 ORDER BY total_revenue DESC;
 ```
+**Sample Output**
 
-Output
-|Store	|Revenue|
-|------|------------------|
-|Store 1	|33,902|
-|Store 2	|33,079|
+| Store   | Revenue ($) |
+|---------|-------------|
+| Store 1 | 33,902      |
+| Store 2 | 33,079      |
 
 **Insight**
 
@@ -249,10 +250,65 @@ A **Power BI dashboard** was built to visualize key operational metrics includin
 
 
 ---
+### Advanced_SQL_Analysis
 
-# 📁 Repository Structure
+#### 1️⃣ CTE Analysis - Top Performing Genres by Store
+
+**Why this:**  
+Instead of one massive, messy join, a **CTE breaks the logic** into structured building blocks.  
+It demonstrates the ability to **organize complex data** transformations in a **scalable way**.
+
+```sql
+WITH GenreRevenue AS (
+    SELECT 
+        s.store_id,
+        c.name AS genre,
+        SUM(p.amount) AS total_revenue
+    FROM payment p
+    JOIN rental r ON p.rental_id = r.rental_id
+    JOIN inventory i ON r.inventory_id = i.inventory_id
+    JOIN store s ON i.store_id = s.store_id
+    JOIN film_category fc ON i.film_id = fc.film_id
+    JOIN category c ON fc.category_id = c.category_id
+    GROUP BY s.store_id, c.name
+)
+
+SELECT *
+FROM GenreRevenue
+WHERE total_revenue > 2500
+ORDER BY total_revenue DESC;
 
 ```
+**What I Discovered:**
+This allows a manager to identify Power Performing Genres generating more than $2,500 revenue across store locations.
+
+### 2️⃣ Window Function - Analysis Customer Ranking by Spend
+
+**Why this:**
+A standard ORDER BY only sorts the results.
+**Window functions** like **RANK()** and **NTILE()** enable customer segmentation **without collapsing rows**, which is extremely **useful for marketing and loyalty programs**.
+
+```sql
+SELECT 
+    customer_id,
+    SUM(amount) AS total_spent,
+    RANK() OVER (ORDER BY SUM(amount) DESC) AS spend_rank,
+    NTILE(10) OVER (ORDER BY SUM(amount) DESC) AS customer_tier
+FROM payment
+GROUP BY customer_id
+ORDER BY spend_rank
+LIMIT 10;
+```
+
+**What I Discovered**
+- spend_rank: Shows the exact **ranking** of **customers** by **total spending**.
+- customer_tier: Segments customers into **10** deciles.
+
+### 💡 Business Use Case:
+The company can target **top 10% customers** with **VIP offers** or **loyalty programs** to increase retention and revenue.
+
+```
+📁 Repository Structure
 Movie-Rental-Inventory-Analytics-SQL
 │
 ├── Data
@@ -260,22 +316,25 @@ Movie-Rental-Inventory-Analytics-SQL
 │
 ├── ER_Diagram
 │   └── Sakila_ERD.png
-|
+│
 ├── SQL_Queries
 │   ├── 01_revenue_by_genre.sql
 │   ├── 02_customer_lifetime_value.sql
 │   ├── 03_rental_frequency.sql
 │   ├── 04_late_return_analysis.sql
-│   ├── 05_revenue_by_store.sql
+│   └── 05_revenue_by_store.sql
 │
 ├── Visuals
-│   ├── demand_by_genre_chart.png
-│   └── rental_dashboard.png
+│   ├── rental_dashboard.png
+│
+├── Advanced_SQL_Analysis
+│   ├── CTEs
+│   └── Window_Function
 │
 ├── README.md
 └── .gitignore
-```
 
+```
 ---
 
 # 🛠️ Tools & Technologies
@@ -289,17 +348,17 @@ Movie-Rental-Inventory-Analytics-SQL
 
 # 📚 Skills Demonstrated
 
-- Advanced SQL joins across multiple tables  
-- Business metric calculations using aggregations  
-- Customer analytics and segmentation   
+- Advanced SQL **joins** across **multiple tables ** 
+- **Business metric** calculations using aggregations  
+- Customer analytics and **segmentation**   
 - Revenue performance analysis  
-- Data storytelling using analytical insights  
+- Data **storytelling** using **analytical** insights  
 
 ---
 
 # 👤 About Me
 
-**A. Sai Arvind**  
+**A Sai Arvind**  
 Data Analyst | SQL | Power BI | Business Analytics  
 
 📧 Email: saiarvind5081@gmail.com  
