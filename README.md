@@ -247,7 +247,9 @@ A **Power BI dashboard** was built to visualize key operational metrics includin
 - Inventory utilization  
 - Store revenue comparison
 
-<img width="788" height="446" alt="image" src="https://github.com/user-attachments/assets/8ec4f433-cc0c-421f-955c-7cbe037865f0" />
+<img width="1137" height="613" alt="Inventory Project 2 S S" src="https://github.com/user-attachments/assets/855d8685-385d-4731-b55c-00e993409615" />
+
+
 
 
 ---
