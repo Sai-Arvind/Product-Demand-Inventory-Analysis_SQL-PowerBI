@@ -239,20 +239,19 @@ ORDER BY total_revenue DESC;
 
 # 📊 Dashboard Visualization
 
-A **Power BI dashboard** was built to visualize key operational metrics including:
+A **Power BI dashboard** was built to visualize **key operational metrics**
 
-- Revenue by genre  
-- Customer lifetime value distribution  
-- Rental frequency trends  
-- Inventory utilization  
-- Store revenue comparison
+1. 50,000+ rental and payment records analyzed
+2. 599 customers evaluated
+3. $67K total revenue analyzed
+4. 16 movie categories analyzed
+5. 2 store locations compared
 
 <img width="1137" height="613" alt="Inventory Project 2 S S" src="https://github.com/user-attachments/assets/855d8685-385d-4731-b55c-00e993409615" />
 
 
-
-
 ---
+
 ### Advanced_SQL_Analysis
 
 #### 1️⃣ CTE Analysis - Top Performing Genres by Store
@@ -328,7 +327,8 @@ Movie-Rental-Inventory-Analytics-SQL
 │   └── 05_revenue_by_store.sql
 │
 ├── Visuals
-│   ├── rental_dashboard.png
+|   ├── Key Dataset Metrics
+│   └── rental_dashboard.png
 │
 ├── Advanced_SQL_Analysis
 │   ├── CTEs
