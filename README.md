@@ -3,12 +3,13 @@
 ![movie1](https://github.com/user-attachments/assets/2fb575c5-2957-41b5-a2b9-337ee91fc36d)
 
 **Project Overview:**
-Created by **Mike Hillyer in 2005**, the Sakila Sample Database is a standardized relational dataset for SQL practice.
+Created by **Mike Hillyer** in **2005**, the Sakila Sample Database is a **standardized relational dataset** for SQL practice.
 
-- Customer behavior
-- Product demand
-- Inventory utilization
-- Store-level revenue performance
+**Includes**
+1. Customer behavior
+2. Product demand
+3. Inventory utilization
+4. Store-level revenue performance
 
 The goal is to demonstrate how SQL can be used to generate **business insights that support inventory planning, demand analysis and revenue monitoring.**
 
@@ -16,11 +17,11 @@ The goal is to demonstrate how SQL can be used to generate **business insights t
 
 A multi store rental business needs visibility into operational performance
 
-- Which movie genres generate the most revenue
-- Which customers drive the most rentals
-- How often customers rent movies
-- Whether rental durations impact inventory availability
-- How revenue is distributed across stores
+1. Which movie genres generate the most revenue
+2. Which customers drive the most rentals
+3. How often customers rent movies
+4. Whether rental durations impact inventory availability
+5. How revenue is distributed across stores
 
 Without structured analysis, these operational insights remain hidden within multiple relational tables.
 
@@ -28,12 +29,12 @@ Without structured analysis, these operational insights remain hidden within mul
 
 Utilizing SQL to analyze rental transactions and uncover insights
 
-- Revenue contribution by movie genre
-- Customer lifetime value
-- Rental frequency and customer engagement
-- Late return patterns affecting inventory availability
-- Inventory utilization across films
-- Store-level revenue performance
+1. Revenue contribution by movie genre
+2. Customer lifetime value
+3. Rental frequency and customer engagement
+4. Late return patterns affecting inventory availability
+5. Inventory utilization across films
+6. Store-level revenue performance
 
 ## 📊 Dataset
 
@@ -280,7 +281,7 @@ ORDER BY total_revenue DESC;
 
 ```
 **What I Discovered:**
-This allows a manager to identify Power Performing Genres generating more than $2,500 revenue across store locations.
+1. This allows a manager to identify Power Performing Genres generating more than $2,500 revenue across store locations.
 
 ### 2️⃣ Window Function - Analysis Customer Ranking by Spend
 
@@ -301,8 +302,8 @@ LIMIT 10;
 ```
 
 **What I Discovered**
-- spend_rank: Shows the exact **ranking** of **customers** by **total spending**.
-- customer_tier: Segments customers into **10** deciles.
+1. spend_rank: Shows the exact **ranking** of **customers** by **total spending**.
+2. customer_tier: Segments customers into **10** deciles.
 
 ### 💡 Business Use Case:
 The company can target **top 10% customers** with **VIP offers** or **loyalty programs** to increase retention and revenue.
@@ -339,20 +340,20 @@ Movie-Rental-Inventory-Analytics-SQL
 
 # 🛠️ Tools & Technologies
 
-- **SQL (MySQL)**
-- **Power BI**
-- Relational Data Modeling
-- Data Analysis
+1. **SQL (MySQL)**
+2. **Power BI**
+3. Relational Data Modeling
+4. Data Analysis
 
 ---
 
 # 📚 Skills Demonstrated
 
-- Advanced SQL **joins** across **multiple tables ** 
-- **Business metric** calculations using aggregations  
-- Customer analytics and **segmentation**   
-- Revenue performance analysis  
-- Data **storytelling** using **analytical** insights  
+1. Advanced SQL **joins** across **multiple tables **
+2. **Business metric** calculations using aggregations
+3. Customer analytics and **segmentation**
+4. Revenue performance analysis
+5. Data **storytelling** using **analytical** insights  
 
 ---
 
